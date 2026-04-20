@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORGE5 DESIGNS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero {
+      background-image: url('forge-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.88), rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.8));
+    }
+    .spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #ff9500;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #ff4500;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <section class="hero">
+    <div class="relative z-10 px-6 md:px-20 max-w-6xl mx-auto text-center md:text-left">
+      
+      <img src="forge5-logo.png" 
+           alt="FORGE5 DESIGNS" 
+           class="w-[420px] md:w-[720px] mx-auto md:mx-0 mb-12 drop-shadow-2xl">
+
+      <p class="text-4xl md:text-6xl font-light tracking-tighter max-w-3xl mx-auto md:mx-0 mb-12 leading-none">
+        We build visual identities<br>that hold their edge
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
+        <a href="#" class="px-14 py-6 border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black text-xl font-medium transition-all">
+          View Selected Work
+        </a>
+        <a href="#" class="px-14 py-6 bg-white text-black hover:bg-orange-500 hover:text-white text-xl font-medium transition-all">
+          Commission Work
+        </a>
+      </div>
+    </div>
+
+    <!-- Sparks -->
+    <div id="sparks" class="absolute inset-0 pointer-events-none"></div>
+  </section>
+
+  <script>
+    function createSpark() {
+      const spark = document.createElement('div');
+      spark.className = 'spark';
+      spark.style.left = Math.random() * 100 + 'vw';
+      spark.style.top = '-20px';
+      spark.style.animationDuration = (Math.random() * 4 + 3) + 's';
+      document.getElementById('sparks').appendChild(spark);
+      setTimeout(() => spark.remove(), 12000);
+    }
+    setInterval(createSpark, 70);
+  </script>
+</body>
+</html>
